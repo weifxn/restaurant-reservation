@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import './Home.scss'
-import Firebase from '../../firebase'
+import firebase from '../../firebase'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-
+import sha1 from 'sha1';
+import dayjs from 'dayjs'
 const initialFormValues = {
     name: '',
     phone: '',
@@ -10,7 +11,12 @@ const initialFormValues = {
 }
 
 export default () => {
+    const bookingsDB = firebase.database().ref('bookings')
     const [restaurantName, setRestaurantName] = useState("Restaurant")
+    const [bookings, setBookings] = useState([])
+    useEffect(() => {
+        getBookings()
+    }, [])
     const validateForm = values => {
         let errors = {};
         if (!values.name) {
@@ -24,8 +30,28 @@ export default () => {
         return errors;
     }
     const submitForm = (values, { setSubmitting }) => {
-        alert(JSON.stringify(values, null, 2));
         setSubmitting(false);
+        const key = sha1(values.phone + bookings.length).substring(0, 5)
+        bookingsDB.child(key).set({ ...values, timestamp: dayjs().format() })
+    }
+
+    const getBookings = () => {
+        bookingsDB
+            .orderByChild('timestamp')
+            .on('value', snap => {
+                var data = []
+                if (snap !== null) {
+                    snap.forEach(item => {
+                        console.log(item.val())
+
+                        // data.push({
+                        //     count: item.val().count,
+                        //     key: item.key,
+                        //     url: item.val().url,
+                        // })
+                    })
+                }
+            })
     }
     return (
         <div>

@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from './containers/Home/Home'
+import Admin from './containers/Admin/Admin'
+
 
 import { Helmet } from 'react-helmet'
 
@@ -15,6 +17,7 @@ function App() {
       </Helmet>
       <Router >
         <Route path="/" exact component={Home} />
+        <Route path="/admin" exact component={Admin} />
       </Router>
     </div>
   );
