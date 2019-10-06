@@ -7,7 +7,7 @@ export default () => {
         getURL()
     }, [])
     const getURL = () => {
-        const key = window.location.pathname.substr(1)
+        const key = window.location.pathname.substr(3)
         console.log(key)
         Firebase.database()
             .ref('bookings')
@@ -48,7 +48,7 @@ export default () => {
                         Booking Time: {data.date}
                     </div>
                     <div>
-                        Code: {window.location.pathname.substr(1)}
+                        Code: {window.location.pathname.substr(3)}
                     </div>
                 </>
             }
