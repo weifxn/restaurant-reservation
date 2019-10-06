@@ -30,20 +30,14 @@ export default () => {
             })
     }
 
-    const multiples = () => [...Array(101).keys()].filter(i => i % 3 === 0 || i % 5 === 0)
 
-    const palindrome = text => text.toLowerCase() === text.toLowerCase().split("").reverse().join("") ? "true" : "false"
 
 
 
     return (
         <div>
             <h1>Booking List</h1>
-            <div>{palindrome('Hnah')}</div>
 
-            {multiples().map((item) => (
-                <div>{item}</div>
-            ))}
             {bookings.map((item) => (
                 <>
                     <div>{item.key}</div>
