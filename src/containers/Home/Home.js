@@ -4,13 +4,19 @@ import firebase from '../../firebase'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import sha1 from 'sha1';
 import dayjs from 'dayjs'
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
+
+
 const initialFormValues = {
     name: '',
     phone: '',
+    date: '',
     totalPax: 2,
 }
 
 export default () => {
+    let today = new Date()
     const bookingsDB = firebase.database().ref('bookings')
     const [restaurantName, setRestaurantName] = useState("Restaurant")
     const [bookings, setBookings] = useState([])
@@ -30,9 +36,10 @@ export default () => {
         return errors;
     }
     const submitForm = (values, { setSubmitting }) => {
+        values.date = values.date.toString()
         setSubmitting(false);
         const key = sha1(values.phone + bookings.length).substring(0, 5)
-        bookingsDB.child(key).set({ ...values, timestamp: dayjs().format() })
+        bookingsDB.child(key).set({ ...values, timestamp: dayjs().format() }).then(() => { window.location.href = key })
     }
 
     const getBookings = () => {
@@ -61,7 +68,7 @@ export default () => {
                 validate={validateForm}
                 onSubmit={submitForm}
             >
-                {({ isSubmitting }) => (
+                {({ isSubmitting, setFieldValue, values }) => (
                     <Form className="form">
                         <div>
                             <Field type="name" name="name" placeholder="Name" />
@@ -71,6 +78,22 @@ export default () => {
                             <Field placeholder="Phone Number" type="text" name="phone" />
                             <ErrorMessage name="phone" component="div" />
                         </div>
+                        <DatePicker
+                            showTimeSelect
+                            selected={values.date ? new Date(values.date) : null}
+                            placeholderText="Date & Time"
+                            timeIntervals={60}
+                            timeCaption="time"
+                            name="date"
+                            value={values.date}
+                            minTime={today.setHours(8)}
+                            maxTime={today.setHours(21)}
+                            minDate={new Date()}
+                            maxDate={new Date().setDate(today.getDate() + 14)}
+                            onChange={date => setFieldValue('date', date, false)}
+                            dateFormat="d/M h:mm aa"
+                        />
+
                         <Field component="select" name="totalPax">
                             {[...Array(11).keys()].slice(1).map(item => (
                                 <option value={item}>{item}</option>

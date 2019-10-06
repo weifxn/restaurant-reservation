@@ -45,13 +45,12 @@ export default () => {
                 <div>{item}</div>
             ))}
             {bookings.map((item) => (
-                <div>
-                    {item.key}
-                    {item.name}
-                    {item.phone}
-                    {item.timestamp}
-
-                </div>
+                <>
+                    <div>{item.key}</div>
+                    <div>{item.name}</div>
+                    <div>{item.phone}</div>
+                    <div>{item.timestamp}</div>
+                </>
             ))}
         </div>
     )

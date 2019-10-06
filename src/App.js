@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from './containers/Home/Home'
 import Admin from './containers/Admin/Admin'
+import Booking from './containers/Booking/Booking'
 
 
 import { Helmet } from 'react-helmet'
@@ -18,6 +19,8 @@ function App() {
       <Router >
         <Route path="/" exact component={Home} />
         <Route path="/admin" exact component={Admin} />
+        <Route path="/:id" exact component={Booking} />
+
       </Router>
     </div>
   );
