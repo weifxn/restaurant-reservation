@@ -39,7 +39,7 @@ export default () => {
         values.date = values.date.toString()
         setSubmitting(false);
         const key = sha1(values.phone + bookings.length).substring(0, 5)
-        bookingsDB.child(key).set({ ...values, timestamp: dayjs().format() }).then(() => { window.location.href = key })
+        bookingsDB.child(key).set({ ...values, timestamp: dayjs().format() }).then(() => { window.location.href = `b/${key}` })
     }
 
     const getBookings = () => {

@@ -33,7 +33,6 @@ export default () => {
                 <input type="submit" />
             </form>
             <h2>Question 2</h2>
-            {21 % 23}
             <div>
                 findHCF(5, [2, 4, 6, 8, 10]) = {findHCF(5, [2, 4, 6, 8, 10])}
             </div>

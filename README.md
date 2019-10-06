@@ -20,6 +20,8 @@ There are plenty of features that Firebase offers that would offer, such as [Rea
 
 [User Authentication](https://firebase.google.com/docs/auth) is another feature by Firebase which allows users to sign in with other identity providers such as Facebook, Google or Twitter. Using this would also be more secure for the Admin page of the platform, because it would be harder to penetrate services provided by Google than manually setting up a database.
 
+_Due to some misunderstanding to the question, I thought I was supposed to develop a platform for this section, hence the source code in this repo. Anyway here's the site [rs.weifxn.xyz](https://rs.weifxn.xyz) & [rs.weifxn.xyz/admin](https://rs.weifxn.xyz/admin)_
+
 # Section 2
 
 In the programming language of your choice, write the solution for the following questions:
@@ -34,6 +36,8 @@ In the programming language of your choice, write the solution for the following
 const multiples = () =>
   [...Array(101).keys()].filter(num => num % 3 === 0 || num % 5 === 0);
 ```
+
+demo: [rs.weifxn.xyz/assessment](https://rs.weifxn.xyz/assessment)
 
 First, I generated an empty array using `Array(101)`, in order to get value 0 ~ 100 I use the `keys()` function, which returns an object with keys of each index. To turn the object into array, I used spread operator (`...`) and contain inside an array to generate an array from 0 to 100
 
@@ -81,6 +85,8 @@ const findHCF = (num, arr) => {
 };
 ```
 
+demo: [rs.weifxn.xyz/assessment](https://rs.weifxn.xyz/assessment)
+
 First, I wrote the Highest Common Factor algorithm for 2 digits, it takes in 2 parameters `(a, b)` and checks whether a equals to 0 with `a === 0` using a ternary operator, if it is then `b` is returned because it is the Highest Common Factor.
 
 If `a` does not equal to zero, it runs the same function again which turns into a recursive function. However, the arguments are different this time `(b % a, a)`, this is to allow each digits to take turn returning the remainder number. Once the remainder is 0, the other number is then the Highest Common Factor.
@@ -119,6 +125,8 @@ const palindrome = text =>
     ? true
     : false;
 ```
+
+demo: [rs.weifxn.xyz/assessment](https://rs.weifxn.xyz/assessment)
 
 First, the text is transformed to lowercased using `.toLowerCase()` to allow case sensitive palindromes. Then, the second text is split into array of each letter using `split("")`, reversed the order of each letter using `reverse()` and combined back together from array to string using `join("")`.
 
