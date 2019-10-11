@@ -20,7 +20,7 @@ function App() {
       <Router >
         <Route path="/" exact component={Home} />
         <Route path="/admin" exact component={Admin} />
-
+        <Route path="/assessment" exact component={Assessment} />
         <Route path="/b/:id" exact component={Booking} />
       </Router>
     </div>

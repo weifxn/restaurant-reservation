@@ -14,8 +14,11 @@ export default () => {
         bookingsDB
             .orderByChild('timestamp')
             .on('value', snap => {
+                console.log('ok')
+
                 var data = []
                 if (snap !== null) {
+
                     snap.forEach(item => {
                         data.push({
                             name: item.val().name,
@@ -39,12 +42,12 @@ export default () => {
             <h1>Booking List</h1>
 
             {bookings.map((item) => (
-                <>
+                <div style={{ margin: 20 }}>
                     <div>{item.key}</div>
                     <div>{item.name}</div>
                     <div>{item.phone}</div>
                     <div>{item.timestamp}</div>
-                </>
+                </div>
             ))}
         </div>
     )
